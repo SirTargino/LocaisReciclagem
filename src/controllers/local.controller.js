@@ -93,7 +93,10 @@ export const editLocalByID = async (req, res) => {
             return res.status(400).json({ message: `Erro: ${ERRORS.CEP_INVALIDO}` });
         };
 
-        await LocalEntity.update({ local_name: newlocal_name,informacoes: newinformacoes, cep: newcep }, {
+        const newcidade = cepValidado.localidade;
+        const newrua = cepValidado.logradouro;
+
+        await LocalEntity.update({ local_name: newlocal_name,informacoes: newinformacoes, cep: newcep, rua: newrua, cidade: newcidade}, {
             where: {
                 id
             }
