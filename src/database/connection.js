@@ -1,21 +1,22 @@
-import { Sequelize } from "sequelize";
+// db.mjs
 
-//Database connection
+import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('locais_reciclagem', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-})
+// Defina a URL de conexão com o banco de dados
+const databaseUrl = 'postgres://default:oIcsrgKjS9k1@ep-silent-tooth-a4lfr4mg.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require';
 
-//Connection test
+// Crie uma instância Sequelize passando a URL de conexão
+const sequelize = new Sequelize(databaseUrl);
 
-async function testConnection(){
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully');
-    } catch(error){
-        console.log("Error")
-    }
-}
+const connectToDatabase = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    // Sincronize os modelos com o banco de dados, se necessário
+    // await sequelize.sync({ alter: true });
+  } catch (error) {
+    console.error('Erro ao conectar ao banco de dados:', error);
+  }
+};
 
-export {sequelize, testConnection};
+export { sequelize, connectToDatabase };

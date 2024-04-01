@@ -2,7 +2,7 @@ import { sequelize } from "../database/connection.js";
 
 import { DataTypes, Sequelize } from "sequelize";
 
-export const LocalEntity = sequelize.define('Local', {
+export const LocalEntity = sequelize.define('Locals', {
     id: {
         type: DataTypes.UUID,
         allowNull: false,

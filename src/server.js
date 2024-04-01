@@ -1,5 +1,5 @@
 import express from 'express';
-import { testConnection } from './database/connection.js';
+import { connectToDatabase } from './database/connection.js';
 import { localRouter } from './routes/local.router.js';
 
 const app = express()
@@ -10,6 +10,6 @@ app.use(express.json());
 app.use(localRouter)
 
 app.listen(port, ()=>{
-    testConnection()
+    connectToDatabase()
     return console.log("Server run");
 })
