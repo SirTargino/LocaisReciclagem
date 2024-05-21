@@ -1,12 +1,12 @@
 // db.mjs
 
 import { Sequelize } from 'sequelize';
-
-// Defina a URL de conexão com o banco de dados
-const databaseUrl = 'postgres://default:oIcsrgKjS9k1@ep-silent-tooth-a4lfr4mg.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require';
+import "dotenv/config";
 
 // Crie uma instância Sequelize passando a URL de conexão
-const sequelize = new Sequelize(databaseUrl);
+const sequelize = new Sequelize(process.env.db_url, {
+  logging: false,
+});
 
 const connectToDatabase = async () => {
   try {
